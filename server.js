@@ -26,7 +26,7 @@ MongoClient.connect(connectionString,
         .then(client => {
             console.log('Connected to Database');
 
-            const db = client.db('bvl');
+            const db = client.db('Bvl');
             const usersCollection = db.collection('Users');
             const levelOne = db.collection('Level 1');
             const levelTwo = db.collection('Level 2');
