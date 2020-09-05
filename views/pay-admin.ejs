@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet"> 
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="d-flex">
+      <ul class="navbar-nav sidebar sidebar-dark accordion">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center">
+          <div class="sidebar-brand-text mx-3">
+            <% for(var y = 0; y < details.length; y++) { %>
+              <%= details[y].customer_name %>
+            <% } %>
+          </div>
+        </a>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="dashboard">
+            <ion-icon name="speedometer-sharp" style="font-size: 24px;"></ion-icon>
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="acknowledge_pay">
+            <ion-icon name="wallet-outline" style="font-size: 24px;"></ion-icon>
+            <span>Receive Money</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        
+
+        <li class="nav-item" style="position: fixed; bottom: 0;">
+          <a class="nav-link" href="logout">
+            <ion-icon name="log-out-outline" style="font-size: 24px;"></ion-icon>
+            <span>Logout</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider my-0" style="position: relative; top: 64vh">
+      </ul>
+
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <button id="toggleSide" class="btn btn-link d-md-none mr-3">
+              <ion-icon name="menu-outline" style="font-size: 30px; color: #344B9B"></ion-icon>
+            </button>
+
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link">
+                  <% for(var y = 0; y < details.length; y++) { %>
+                    <ion-icon name="people-circle-outline" style="font-size: 24px; padding-right: 5px;"></ion-icon>
+                    <span><%= details[y].user_count %></span>
+                  <% } %>
+                </a>
+              </li>
+
+              <div class="topbar-divider"></div>
+
+              <li class="nav-item">
+                <a class="nav-link">
+                  <img class="img-profile rounded-circle" src="/images/bvi.png">
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="container-fluid">
+            <div class="row h-100">
+              <div class="col-md-12">
+                <% for(var y = 0; y < details.length; y++) { %>
+                  <div class="title">
+                    <h1 class="text-center">DUE</h1>
+                  </div>
+    
+                  <div class="reg-no" style="padding-bottom: 8vh;">
+                      <h4 class="text-center"><%= details[y].payerPNum %></h4>
+                  </div>
+    
+                  <div class="payee">
+                    <div class="row">
+                      <div class="col">
+                        <p style="float: right; padding-top: 4px;">
+                          Crowd Manager fee
+                        </p>
+                      </div>
+                      <div class="col" style="padding: 0">
+                        <p class="text-center" style="margin-bottom: 0; background-color: lightgray; padding: 5px 30px;">
+                          <em><%= details[y].adminPNum %></em>
+                        </p>
+                      </div>
+                      <div class="col">
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <p style="float: right; padding-top: 4px;">
+                          M20
+                        </p>
+                      </div>
+                      <div class="col" style="padding: 0">
+                        <input type="hidden" value="<%= details[y].adminPNum %>" id="num">
+                        <button type="button" class="btn myBtn edit-btn" onclick="copyNum()">Copy Number</button>
+                      </div>
+                      <div class="col">
+
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="pay-button text-center" style="padding-top:15vh">
+                    <form action="admin_payment" method="GET">
+                        <button type="submit" class="btn myBtn">Paid</button>
+                    </form>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="bottom-colour">
+            <div class="text-center">
+              <img src="/images/logo.png" class="img-fluid" style="width: 90px;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+    <script>
+      var copyNum = function() {
+          var num = document.querySelector('.payee').children[0].children[1].innerText;
+          
+          var tempInput = document.createElement("input");
+          tempInput.value = num;
+          tempInput.readOnly = "";
+
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempInput);
+      };
+
+    $('#toggleSide').click(function() {
+      // $('.sidebar').toggle();
+      $(".sidebar").animate({width:'toggle'},500);
+    });
+  </script>
+  </body>
+</html>

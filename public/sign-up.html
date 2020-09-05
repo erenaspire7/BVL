@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/images/bvi.png">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet"> 
+    
+    <title>Sign Up</title>
+  </head>
+  <body style="height: 100vh;">
+    <div class="d-flex align-items-center h-100">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 offset-md-3 my-auto">
+            <img src="/images/bvi.png" class="img-fluid mx-auto d-block logo edit">
+            <form method="POST" action="process_form" onsubmit="return checkForm()">
+                <div class="form-group">
+                    <label for="user-name">Full Name</label>
+                    <input type="text" class="form-control" id="user-name" aria-describedby="user-name" name="userName" required minlength="4" maxlength="50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-phone-number">Number</label>
+                    <input type="number" aria-label="user-phone-number" class="form-control" name="pNum" id="p-num" required>
+                </div>
+      
+                <div class="form-group">
+                    <label for="user-pin">PIN</label>
+                    <input type="password" class="form-control" id="user-pin" name="userPin" pattern="[0-9]+" title="Ensure that your PIN are all numbers" minlength="4" required>
+                </div>
+  
+                <div class="form-group">
+                    <label for="confirm-user-pin">Confirm PIN</label>
+                    <input type="password" class="form-control" id="confirm-user-pin" name="confirmUserPin" pattern="[0-9]+" title="Ensure that your PIN are all numbers" minlength="4" required>
+                </div>
+  
+               
+                <div class="text-center">
+                  <button type="submit" class="btn myBtn">Submit</button>
+                  <p style="margin-top: 2vh;"><a href="sign-in.html" class="btn myBtn editBtn">Already signed up? Log In!</a></p>
+                </div>
+            </form>
+          </div>
+        </div>
+          
+      </div>
+
+      <div class="bottom-colour">
+                    
+      </div>
+    </div>
+    
+
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorModalLabel"><ion-icon name="alert-circle-outline" size="large"></ion-icon> Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Please, ensure your PIN is the same at both fields!
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <script src="js/validate.js" type="text/javascript"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+  </body>
+</html>

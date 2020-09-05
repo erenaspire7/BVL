@@ -1,0 +1,245 @@
+@font-face {
+  font-family: 'liberation_sansbold_italic';
+  src: url('../fonts/liberationsans-bolditalic-webfont.woff2') format('woff2'),
+       url('../fonts/liberationsans-bolditalic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #f8f9fc;
+}
+
+ion-icon {
+  vertical-align: middle;
+}
+
+#errorModal .modal-header{
+  border-bottom: none !important;
+  padding-bottom: 0;
+}
+
+.sidebar {
+  min-height: 100vh;
+  display: none;
+  background-color: #344B9B;
+}
+
+
+.sidebar .sidebar-brand {
+  color: #fff;
+  height: 4.375rem;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .05rem;
+  z-index: 1;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.sidebar-dark hr.sidebar-divider {
+  border-top: 1px solid rgba(255,255,255,.15);
+  margin: 0 1rem 1rem;
+}
+
+.sidebar .nav-item {
+  position: relative;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+}
+
+.sidebar-dark .nav-item .nav-link {
+  color: rgba(255,255,255,.8);
+}
+
+.sidebar .nav-item .nav-link {
+  text-align: center;
+  padding: .75rem 1rem;
+  width: 6.5rem;
+  margin: 0 auto;
+}
+
+.sidebar .nav-item .nav-link, .topbar .nav-item .nav-link {
+  position: relative;
+}
+
+.sidebar .nav-item .nav-link span {
+  font-size: .65rem;
+  display: block;
+}
+
+#content-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#content {
+  flex: 1 0 auto;
+}
+
+.topbar {
+  height: 4.375rem;
+}
+
+.topbar .topbar-divider {
+  width: 0;
+  border-right: 1px solid #e3e6f0;
+  height: calc(4.375rem - 2rem);
+  margin: auto 0rem;
+}
+
+.topbar.navbar-light .navbar-nav .nav-item .nav-link {
+  color: #d1d3e2;
+}
+
+.topbar .nav-item .nav-link {
+  height: 4.375rem;
+  display: flex;
+  align-items: center;
+  padding: 0 .75rem;
+}
+
+.topbar .nav-item .nav-link {
+  position: relative;
+}
+
+.topbar.navbar-light .navbar-nav .nav-item .nav-link {
+  color: #d1d3e2;
+}
+
+.topbar .nav-item .nav-link {
+  height: 4.375rem;
+  display: flex;
+  align-items: center;
+  padding: 0 .75rem;
+}
+
+.topbar .nav-item .nav-link {
+  position: relative;
+}
+
+.topbar .nav-item .nav-link .img-profile {
+  height: 2rem ;
+  
+}
+.title {
+  font-family: liberation_sansbold_italic;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+}
+
+.title {
+  padding-top: 10vh;
+}
+.title h1 {
+  font-size: 2rem !important;
+}
+
+.reg-no {
+  padding-bottom: 4vh;
+}
+
+.reg-no h4 {
+  font-size: 1.2rem !important;
+}
+
+.level {
+  padding-bottom: 25vh;
+}
+
+.level h6 {
+  font-size: 1.4rem !important;
+}
+
+.bottom-colour {
+  height: 3vh;
+  width: 100%;
+  background-color: #a7ffc9;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.payer {
+  padding-top: 10vh;
+}
+
+.payer h2 {
+  font-family: 'liberation_sansbold_italic';
+}
+
+
+
+.myBtn {
+  width: 50vw;
+  background-color: #344B9B;
+  color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.logo {
+  width: 40vw;
+}
+
+.edit {
+  width: 25vw !important;
+}
+
+.editBtn {
+  width: 75vw;
+}
+
+@media (min-width: 768px) { 
+  .sidebar {
+      width: 14rem !important;
+      display: block !important;
+  }
+
+  .sidebar .sidebar-brand .sidebar-brand-text {
+      display: inline;
+  }
+
+  .sidebar .nav-item .nav-link {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 1rem;
+      width: 14rem;
+  }
+
+  .sidebar .nav-item .nav-link span {
+      font-size: .85rem;
+      display: inline;
+  }
+
+  .logo {
+    width: 20vw;
+  }
+
+  .edit {
+    width: 10vw !important;
+  }
+
+  .myBtn {
+    width: 20vw;
+  }
+
+  .edit-btn {
+    width: 27.5vw;
+  }
+}

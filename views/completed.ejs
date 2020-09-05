@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/css/admin-css.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet"> 
+    <title>Times Completed</title>
+  </head>
+  <body>
+    
+    <div class="d-flex">
+      <ul class="navbar-nav sidebar sidebar-dark accordion">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">
+          <div class="sidebar-brand-icon">
+            <img src="/images/bvi.png" class="img-fluid mx-auto d-block admin-icon">
+          </div>
+          <div class="sidebar-brand-text mx-3">
+            Admin
+          </div>
+        </a>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="admin">
+            <ion-icon name="people-circle-outline" style="font-size: 24px;"></ion-icon>
+            <span>Users</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item ">
+          <a class="nav-link" href="change_no">
+            <ion-icon name="cash-outline" style="font-size: 24px;"></ion-icon>
+            <span>Payments Pending</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+        
+        <li class="nav-item active">
+          <a class="nav-link" href="payments_completed">
+            <ion-icon name="card-outline" style="font-size: 24px;"></ion-icon>
+            <span>Payments Completed</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="change_no">
+            <ion-icon name="shuffle-outline" style="font-size: 24px;"></ion-icon>
+            <span>Change Number</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+            <a class="nav-link" href="completed">
+              <ion-icon name="checkmark-done-outline" style="font-size: 24px;"></ion-icon>
+              <span>Times Completed</span>
+            </a>
+          </li>
+  
+        <hr class="sidebar-divider my-0">
+      </ul>
+
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <button id="toggleSide" class="btn btn-link d-md-none mr-3">
+              <ion-icon name="menu-outline" style="font-size: 30px; color: #344B9B"></ion-icon>
+            </button>
+
+            <ul class="navbar-nav ml-auto">
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <li class="nav-item">
+                <a class="nav-link">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Crowd Manager</span>
+                  <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="container-fluid">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold" style="color: #FF332E">Completed</h6>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table text-center" id="table_2">
+                    <thead class="thead-dark">
+                      <tr>
+                        
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Num</th>
+                        <th>Times Completed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for (i = 0; i < data.length; i++) { %>
+                      <tr>
+                        
+                        <td><%= data[i].c_id %></td>
+                        <td><%= data[i].customer_name %></td>
+                        <td><%= data[i].customer_phone_num %></td>
+                        <td><%= data[i].times_completed %></td>
+                      </tr>
+                        <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('#table_2').DataTable();
+      });
+
+      $('#toggleSide').click(function() {
+        $(".sidebar").animate({width:'toggle'},500);
+      });
+    </script>
+  </body>
+</html>
