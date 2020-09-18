@@ -242,7 +242,7 @@ MongoClient.connect(connectionString,
                             res.redirect("dashboard");
                         });
                     } else {
-                        res.redirect("sign-in.html");
+                        res.redirect("sign-in.html");                        
                     } 
                 })
                 
@@ -295,7 +295,9 @@ MongoClient.connect(connectionString,
                                 if (err)
                                     throw (err)
                                 
-                                x_num = data[0].admin_num;
+                                v_num = data[0].admin_v_num;
+                                e_num = data[0].admin_e_num
+                                mw_num = data[0].admin_mw_num;
 
                                 usersCollection.find().toArray(function(err, data) {
                                     if (err) {
@@ -315,8 +317,10 @@ MongoClient.connect(connectionString,
                                         }
                                     }
     
-                                    x.adminPNum = x_num;
-    
+                                    x.adminVNum = v_num;
+                                    x.adminENum = e_num;
+                                    x.adminMwNum = mw_num;
+
                                     paymentTable.insertOne(x, function(err, res) {
                                         if (err) throw err;
                                     });
@@ -482,7 +486,7 @@ MongoClient.connect(connectionString,
                 }
             });
 
-            app.get('/change_no', (req,res) => {
+            app.get('/v_change_no', (req,res) => {
                 if (req.cookies.adminCookie) {
                     
                     var get_admin_details = () => {
@@ -497,7 +501,7 @@ MongoClient.connect(connectionString,
                     };
 
                     get_admin_details().then(values => {
-                        res.render("change_no.ejs", {data: values});
+                        res.render("v_change_no.ejs", {data: values});
                     })
                     
                 } else {
@@ -505,10 +509,56 @@ MongoClient.connect(connectionString,
                 }
             })
 
-            app.get('/no_changed', (req, res) => {
+            app.get('/e_change_no', (req,res) => {
+                if (req.cookies.adminCookie) {
+                    
+                    var get_admin_details = () => {
+                        return new Promise((resolve, reject) => {
+                            adminTable.find().toArray(function(err, data) {
+                                if (err)
+                                    reject(err)
+
+                                resolve(data);
+                            })
+                        })
+                    };
+
+                    get_admin_details().then(values => {
+                        res.render("e_change_no.ejs", {data: values});
+                    })
+                    
+                } else {
+                    res.redirect("/login.html");
+                }
+            })
+
+            app.get('/mw_change_no', (req,res) => {
+                if (req.cookies.adminCookie) {
+                    
+                    var get_admin_details = () => {
+                        return new Promise((resolve, reject) => {
+                            adminTable.find().toArray(function(err, data) {
+                                if (err)
+                                    reject(err)
+
+                                resolve(data);
+                            })
+                        })
+                    };
+
+                    get_admin_details().then(values => {
+                        res.render("mw_change_no.ejs", {data: values});
+                    })
+                    
+                } else {
+                    res.redirect("/login.html");
+                }
+            })
+
+            app.get('/v_no_changed', (req, res) => {
                 if (req.cookies.adminCookie) {
                     var response = {
-                        admin_num: req.query.new_admin_no
+                        admin_v_num: req.query.new_admin_no
                     }
     
                     myQuery = {
@@ -519,7 +569,79 @@ MongoClient.connect(connectionString,
                         return new Promise((resolve, reject) => {
                             adminTable.updateOne(
                                 myQuery,
-                                {$set: { admin_num: response.admin_num}}  ,
+                                {$set: { admin_v_num: response.admin_v_num}}  ,
+                                function(err, data) {
+                                    if (err)
+                                        reject (err)
+
+                                    resolve(data)
+                                }  
+                            )
+                        })
+                    }
+    
+                    change().then(values => {
+                        res.redirect('/admin');
+                    })
+                    
+                } else {
+                    res.redirect("/login.html");
+                }
+                
+                
+            })
+            
+            app.get('/e_no_changed', (req, res) => {
+                if (req.cookies.adminCookie) {
+                    var response = {
+                        admin_e_num: req.query.new_admin_no
+                    }
+    
+                    myQuery = {
+                        admin_email:"admin@bvl.com"
+                    };
+
+                    var change = () => {
+                        return new Promise((resolve, reject) => {
+                            adminTable.updateOne(
+                                myQuery,
+                                {$set: { admin_e_num: response.admin_e_num}}  ,
+                                function(err, data) {
+                                    if (err)
+                                        reject (err)
+
+                                    resolve(data)
+                                }  
+                            )
+                        })
+                    }
+    
+                    change().then(values => {
+                        res.redirect('/admin');
+                    })
+                    
+                } else {
+                    res.redirect("/login.html");
+                }
+                
+                
+            })
+
+            app.get('/mw_no_changed', (req, res) => {
+                if (req.cookies.adminCookie) {
+                    var response = {
+                        admin_mw_num: req.query.new_admin_no
+                    }
+    
+                    myQuery = {
+                        admin_email:"admin@bvl.com"
+                    };
+
+                    var change = () => {
+                        return new Promise((resolve, reject) => {
+                            adminTable.updateOne(
+                                myQuery,
+                                {$set: { admin_mw_num: response.admin_mw_num}}  ,
                                 function(err, data) {
                                     if (err)
                                         reject (err)
@@ -826,7 +948,7 @@ MongoClient.connect(connectionString,
                                 }
 
                                 
-                                delete y.adminPNum;
+                                
                                 delete y.user_admin_pay_check;
                                 delete y.admin_receive_check;
                                 delete y.user_pay_check;

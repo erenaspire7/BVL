@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/css/admin-css.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet"> 
-    <title>Payments Pending</title>
+    <title>Change Vodacom Admin Number</title>
   </head>
   <body>
     
@@ -36,7 +36,7 @@
 
         <hr class="sidebar-divider my-0">
 
-        <li class="nav-item active">
+        <li class="nav-item ">
           <a class="nav-link" href="payment_table">
             <ion-icon name="cash-outline" style="font-size: 24px;"></ion-icon>
             <span>Payments Pending</span>
@@ -45,7 +45,7 @@
 
         <hr class="sidebar-divider my-0">
         
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="payments_completed">
             <ion-icon name="card-outline" style="font-size: 24px;"></ion-icon>
             <span>Payments Completed</span>
@@ -55,31 +55,31 @@
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item">
-          <a class="nav-link" href="v_change_no">
-            <ion-icon name="shuffle-outline" style="font-size: 24px;"></ion-icon>
-            <span>Change Vodacom Number</span>
-          </a>
-        </li>
-
-        <hr class="sidebar-divider my-0">
-
-        <li class="nav-item">
-          <a class="nav-link" href="e_change_no">
-            <ion-icon name="shuffle-outline" style="font-size: 24px;"></ion-icon>
-            <span>Change Econet Number</span>
-          </a>
-        </li>
-
-        <hr class="sidebar-divider my-0">
-
-        <li class="nav-item">
-          <a class="nav-link" href="mw_change_no">
-            <ion-icon name="shuffle-outline" style="font-size: 24px;"></ion-icon>
-            <span>Change myWallet Number</span>
-          </a>
-        </li>
-
-        <hr class="sidebar-divider my-0">
+            <a class="nav-link" href="v_change_no">
+              <ion-icon name="shuffle-outline" style="font-size: 24px;"></ion-icon>
+              <span>Change Vodacom Number</span>
+            </a>
+          </li>
+  
+          <hr class="sidebar-divider my-0">
+  
+          <li class="nav-item">
+            <a class="nav-link" href="e_change_no">
+              <ion-icon name="shuffle-outline" style="font-size: 24px;"></ion-icon>
+              <span>Change Econet Number</span>
+            </a>
+          </li>
+  
+          <hr class="sidebar-divider my-0">
+  
+          <li class="nav-item">
+            <a class="nav-link" href="mw_change_no">
+              <ion-icon name="shuffle-outline" style="font-size: 24px;"></ion-icon>
+              <span>Change myWallet Number</span>
+            </a>
+          </li>
+  
+          <hr class="sidebar-divider my-0">
 
         <li class="nav-item">
           <a class="nav-link" href="completed">
@@ -89,6 +89,7 @@
         </li>
 
         <hr class="sidebar-divider my-0">
+        
       </ul>
 
       <div id="content-wrapper" class="d-flex flex-column">
@@ -110,52 +111,34 @@
             </ul>
           </nav>
 
-          <div class="container-fluid">
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold" style="color: #FF332E">Payments Pending</h6>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table text-center" id="table_2">
-                    <thead class="thead-dark">
-                      <tr>
-                        
-                        <th>payerPNum</th>
-                        
-                        <th>toBePaidPNum</th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <% for (i = 0; i < data.length; i++) { %>
-                      <tr>
-                        
-                        <td><%= data[i].payerPNum %></td>
-                        
-                        <td><%= data[i].toBePaidPNum %></td>
-                        <td>
-                            <form action="confirm" method="GET">
-                                <input type="hidden" name="payerPNum" value="<%= data[i].payerPNum %>">
-                                <button type="submit" class="btn myBtn">
-                                    Acknowledge Payment
-                                </button>
-                            </form>
-                        </td>
-                        <td>
-                          <form action="delete_pay" method="GET">
-                              <input type="hidden" name="payerPNum" value="<%= data[i].payerPNum %>">
-                              <input type="hidden" name="toBePaidPNum" value="<%= data[i].toBePaidPNum %>">
-                              <button class="btn btn-outline-danger" style="padding: 4px">
-                                <ion-icon name="trash-outline" style="font-size: 24px;"></ion-icon>
-                              </button>
+          <div class="container-login" style="margin: 0 21rem">
+            <div class="row justify-content-center">
+              <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="card shadow-sm my-5">
+                  <div class="card-body p-0">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="login-form">
+                          <div class="text-center">
+                            <h1 class="h5 text-gray-900 "><em>Crowd Manager No.</em></h1>
+                            <% for (i = 0; i < data.length; i++) { %>
+                            <p><em><%= data[i].admin_v_num %></em></p>
+                            <% } %>
+                          </div>
+                          <form class="user" method="GET" action="v_no_changed">
+                            <div class="form-group">
+                              <input type="text" class="form-control" name="new_admin_no" placeholder="Enter New Number" minlength="5" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-block" style="background-color: #344B9B; color: white;">
+                              Change
+                            </button>
                           </form>
-                      </td>
-                      </tr>
-                        <% } %>
-                    </tbody>
-                  </table>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -177,9 +160,6 @@
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
 
     <script>
-      $(document).ready(function() {
-        $('#table_2').DataTable();
-      });
 
       $('#toggleSide').click(function() {
         $(".sidebar").animate({width:'toggle'},500);
