@@ -486,6 +486,16 @@ MongoClient.connect(connectionString,
                 }
             });
 
+            app.get('/clear', (req, res) => {
+                if (req.cookies.adminCookie) {
+                    record.deleteMany({});
+
+                    res.redirect("/payments_completed");
+                } else {
+                    res.redirect("/login.html");
+                }
+            })
+
             app.get('/v_change_no', (req,res) => {
                 if (req.cookies.adminCookie) {
                     

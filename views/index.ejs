@@ -139,6 +139,8 @@
                         <th>Number</th>
                         <th>Name</th>
                         <th>Level</th>
+                        <th>Num_paid</th>
+                        <th>Num_received</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -152,6 +154,9 @@
                         <td><%= users[i][x].customer_phone_num %></td>
                         <td><%= users[i][x].customer_name %></td>
                         <td><%= users[i][x].level %></td>
+                        <td><%= users[i][x].num_given %></td>
+                        <td><%= users[i][x].num_received %></td>
+
                         <td>
                           <button type="button" class="btn myBtn" data-toggle="modal" data-target="#<%= users[i][x]._id.toString().substring(1, 7) %>">
                             Initialize Payment
