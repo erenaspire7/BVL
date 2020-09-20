@@ -122,8 +122,9 @@
                       <tr>
                         
                         <th>payerPNum</th>
-                        
+                        <th>payer_name</th>
                         <th>toBePaidPNum</th>
+                        <th>paid_name</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -133,8 +134,9 @@
                       <tr>
                         
                         <td><%= data[i].payerPNum %></td>
-                        
+                        <td><%= data[i].customer_name %></td>
                         <td><%= data[i].toBePaidPNum %></td>
+                        <td><%= data[i].receive_name %></td>
                         <td>
                             <form action="confirm" method="GET">
                                 <input type="hidden" name="payerPNum" value="<%= data[i].payerPNum %>">

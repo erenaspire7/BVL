@@ -1004,16 +1004,16 @@ MongoClient.connect(connectionString,
                             response.num_received = 0;
                             levelOne.insertOne(response)
                                 .then(result => {
-                                    
-                                })
+                                    delete response.num_given;
+                                    delete response.num_received;
+                                    usersCollection.insertOne(response)
+                                        .then(result => {
+                                        res.redirect('/registration-confirmed.html')
+                                        })
+                                        .catch(error => console.error(error))
+                                    })
                                 .catch(error => console.error(error))
-                            delete response.num_given;
-                            delete response.num_received;
-                            usersCollection.insertOne(response)
-                                .then(result => {
-                                    res.redirect('/registration-confirmed.html')
-                                })
-                                .catch(error => console.error(error))
+                            
                         } else {
                             res.redirect('/registration-failed.html')
                         }
