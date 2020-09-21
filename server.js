@@ -181,13 +181,14 @@ MongoClient.connect(connectionString,
             
                                         var post_id = new ObjectID(data._id) ;
                                         
-                                        levelTwo.insertOne(data);
-                                        
-                                        delete data.num_given;
-                                        delete data.num_received;
-                                        
-                                        
-                                        levelOne.deleteOne({_id:post_id});
+                                        levelTwo.insertOne(data)
+                                            .then(() => {
+                                                delete data.num_given;
+                                                delete data.num_received;
+                                            
+                                                levelOne.deleteOne({_id:post_id});
+                                            })
+                                            .catch(err => console.log(err.message));  
                                     }
                                 }
                             }
@@ -202,11 +203,13 @@ MongoClient.connect(connectionString,
             
                                         var post_id = new ObjectID(data._id) ;
                                         
-                                        levelThree.insertOne(data);
-    
-                                        delete data.num_given;
-                                        delete data.num_received;
-                                        levelTwo.deleteOne({_id:post_id});
+                                        levelThree.insertOne(data)
+                                            .then(() => {
+                                                delete data.num_given;
+                                                delete data.num_received;
+                                                levelTwo.deleteOne({_id:post_id});
+                                            })
+                                            .catch(err => console.log(err.message))
                                     }
                                 }
                             }
@@ -221,20 +224,21 @@ MongoClient.connect(connectionString,
             
                                         var post_id = new ObjectID(data._id) ;
                                         
-                                        levelOne.insertOne(data);
-    
-                                        delete data.num_given;
-                                        delete data.num_received;
+                                        levelOne.insertOne(data)
+                                            .then(() => {
+                                                delete data.num_given;
+                                                delete data.num_received;
 
-                                        levelThree.deleteOne({_id:post_id});
+                                                levelThree.deleteOne({_id:post_id});
 
 
-                                        completed.updateOne(
-                                            data,
-                                            {$inc: {times_completed: 1}},
-                                            { upsert: true }
-                                        )
-                                        
+                                                completed.updateOne(
+                                                    data,
+                                                    {$inc: {times_completed: 1}},
+                                                    { upsert: true }
+                                                );
+                                            })
+                                            .catch(err => console.log(err.message))
                                     }
                                 }
                             }
