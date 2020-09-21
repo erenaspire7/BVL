@@ -325,11 +325,36 @@ MongoClient.connect(connectionString,
                                     x.adminENum = e_num;
                                     x.adminMwNum = mw_num;
 
-                                    paymentTable.insertOne(x, function(err, res) {
-                                        if (err) throw err;
-                                    });
+                                    find_PayerPNum = {
+                                        payerPNum: x.payerPNum
+                                    }
 
-                                    resolve(x)
+                                    find_toBePaidPNum = {
+                                        toBePaidPNum: x.toBePaidPNum
+                                    }
+
+                                    paymentTable.find(find_PayerPNum).toArray()
+                                        .then(res => {
+                                            if (res.length == 0) {
+                                                paymentTable.find(find_toBePaidPNum).toArray()
+                                                    .then(res => {
+                                                        if (res.length == 0) {
+                                                            paymentTable.insertOne(x, function(err, res) {
+                                                                if (err) throw err;
+                                                            });
+
+                                                            resolve(x);
+                                                        } else {
+                                                            resolve();
+                                                        }
+                                                    })
+                                                    .catch(err => console.log(err.message))
+                                            } else {
+                                                resolve();
+                                            }
+                                            
+                                        })
+                                        .catch(err => console.log(err.message))
                                 })
                             });
                             
@@ -337,7 +362,10 @@ MongoClient.connect(connectionString,
                     }
 
                     get_details().then(values => {
-                        res.render('confirm.ejs');
+                        if (values == undefined)
+                            res.redirect('initialize-error.html')
+                        else 
+                            res.render('confirm.ejs');
                     })
                 } else {
                     res.redirect("/login.html");
