@@ -528,6 +528,33 @@ MongoClient.connect(connectionString,
                 }
             })
 
+            app.get('/download_1', (req, res) => {
+                if (req.cookies.adminCookie) {
+                    let file = `${__dirname}/public/Tables/level_1.csv`;
+                    res.download(file);
+                } else {
+                    res.redirect("/login.html");
+                }
+            });
+
+            app.get('/download_2', (req, res) => {
+                if (req.cookies.adminCookie) {
+                    let file = `${__dirname}/public/Tables/level_2.csv`;
+                    res.download(file);
+                } else {
+                    res.redirect("/login.html");
+                }
+            });
+
+            app.get('/download_3', (req, res) => {
+                if (req.cookies.adminCookie) {
+                    let file = `${__dirname}/public/Tables/level_3.csv`;
+                    res.download(file);
+                } else {
+                    res.redirect("/login.html");
+                }
+            });
+            
             app.get('/v_change_no', (req,res) => {
                 if (req.cookies.adminCookie) {
                     
