@@ -1,2 +1,5 @@
 const connectionString = "mongodb://127.0.0.1:27017";
 const db = client.db('bvl');
+
+mongoexport --collection="Level 1" --db=bvl --out=level_1.csv --type=csv --fields=c_id,customer_name,customer_phone_num,num_given,num_received
+    
