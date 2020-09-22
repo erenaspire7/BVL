@@ -915,6 +915,8 @@ MongoClient.connect(connectionString,
                                         x.customer_name = data[i].receive_name;
                                         x.debtor_num = data[i].payerPNum;
                                         x.user_count = num_of_users;
+                                        //user_pay_check: true
+                                        x.user_pay_check = data[i].user_pay_check
                                     }
                                 }
 
@@ -924,11 +926,12 @@ MongoClient.connect(connectionString,
                     };
 
                     check_payment().then(values => {
-                        if (values.debtor_num) {
+                        if (values.debtor_num) 
                             res.render('acknowledge-pay', {info: values});
-                        } else {
+                        else if (values.user_pay_check == undefined)
+                            res.redirect('wait-for-user.html');
+                        else
                             res.redirect('wait-initialization.html');
-                        }
                     })
                 } else {
                     res.redirect('sign-in.html')
@@ -967,7 +970,8 @@ MongoClient.connect(connectionString,
                         })
                     };
 
-                    user_ackowledge().then(values => {
+                    user_ackowledge().then(values => {;
+                        // res.cookie("receive", {"": true}), {secure: false};
                         res.render('confirm_user.ejs')
                     })
                 } else {
