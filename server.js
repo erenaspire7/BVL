@@ -926,7 +926,7 @@ MongoClient.connect(connectionString,
                     };
 
                     check_payment().then(values => {
-                        if (values.debtor_num) 
+                        if (values.user_pay_check == true) 
                             res.render('acknowledge-pay', {info: values});
                         else if (values.user_pay_check == undefined)
                             res.redirect('wait-for-user.html');
