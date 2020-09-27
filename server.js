@@ -165,8 +165,8 @@ MongoClient.connect(connectionString,
                     if (req.cookies.userData) {
                         Promise.all([myPromise_1(), myPromise_2(), myPromise_3()]).then(values => {             
                             var a = values[0];
-                            var b = values[1];
-                            var c = values[2];
+                            // var b = values[1];
+                            // var c = values[2];
                             
                             
                             var data =  {};
@@ -181,19 +181,36 @@ MongoClient.connect(connectionString,
             
                                         var post_id = new ObjectID(data._id) ;
                                         
-                                        levelTwo.insertOne(data)
+                                        levelOne.updateOne(
+                                            {_id: post_id}, 
+                                            {$set: 
+                                                {"num_given": data.num_given, 
+                                                "num_received": data.num_received}
+                                            })
+                                            .then(() => {
+                                                delete data.num_given;
+                                                delete data.num_received;
+
+                                                completed.updateOne(
+                                                    data,
+                                                    {$inc: {times_completed: 1}},
+                                                    { upsert: true }
+                                                );
+                                            })
+                                            .catch(err => console.log(err.message));
+                                        /* levelTwo.insertOne(data)
                                             .then(() => {
                                                 delete data.num_given;
                                                 delete data.num_received;
                                             
                                                 levelOne.deleteOne({_id:post_id});
                                             })
-                                            .catch(err => console.log(err.message));  
+                                            .catch(err => console.log(err.message));   */
                                     }
                                 }
                             }
     
-                            for (i = 0; i < b.length; i++) {
+                            /* for (i = 0; i < b.length; i++) {
                                 if (req.cookies.userData.user_id == b[i].customer_phone_num) {
                                     data = b[i];
     
@@ -212,9 +229,9 @@ MongoClient.connect(connectionString,
                                             .catch(err => console.log(err.message))
                                     }
                                 }
-                            }
+                            } */
     
-                            for (i = 0; i < c.length; i++) {
+                            /* for (i = 0; i < c.length; i++) {
                                 if (req.cookies.userData.user_id == c[i].customer_phone_num) {
                                     data = c[i];
     
@@ -241,7 +258,7 @@ MongoClient.connect(connectionString,
                                             .catch(err => console.log(err.message))
                                     }
                                 }
-                            }
+                            } */
     
                             res.redirect("dashboard");
                         });
